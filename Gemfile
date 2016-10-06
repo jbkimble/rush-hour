@@ -13,4 +13,8 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rack-test'
+  gem 'pry'
+  gem 'rb-readline'
+  gem 'pry-coolline'
+  gem 'database_cleaner'
 end
