@@ -1,3 +1,3 @@
 class Request < ActiveRecord::Base
-  validates :requestType, presence: true
+  validates :request_type, presence: true
 end

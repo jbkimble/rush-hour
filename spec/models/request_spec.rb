@@ -3,17 +3,17 @@ require_relative "../spec_helper"
 RSpec.describe "request" do
   describe "add_request" do
     it "can add a request to the requests table" do
-      Request.create(requestType: "GET")
+      Request.create(request_type: "GET")
 
-      expect(Request.first.requestType).to eq("GET")
+      expect(Request.first.request_type).to eq("GET")
     end
 
     it "can add multiple requests to the requests table" do
-      Request.create(requestType: "GET")
-      Request.create(requestType: "POST")
+      Request.create(request_type: "GET")
+      Request.create(request_type: "POST")
 
-      expect(Request.first.requestType).to eq("GET")
-      expect(Request.last.requestType).to eq("POST")
+      expect(Request.first.request_type).to eq("GET")
+      expect(Request.last.request_type).to eq("POST")
     end
   end
 
