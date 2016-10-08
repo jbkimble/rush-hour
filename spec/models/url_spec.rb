@@ -17,4 +17,17 @@ RSpec.describe "url" do
     end
 
   end
+
+  describe ".list_urls_from_most_least" do
+    it "can list urls from most used to least used" do
+      Url.create(url: "This url")
+      Url.create(url: "Some_url")
+      Url.create(url: "Some_url")
+      Url.create(url: "Some_url")
+      Url.create(url: "This url")
+
+      expect(Url.list_urls_from_most_least).to eq(["Some_url", "This url"])
+    end
+  end
+
 end

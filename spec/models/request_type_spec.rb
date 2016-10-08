@@ -24,4 +24,25 @@ RSpec.describe "request_type" do
       expect(request).to_not be_valid
     end
   end
+
+  describe ".most_frequent_request_type" do
+    it "can find most frequent request type" do
+      RequestType.create(request_type: "GET")
+      RequestType.create(request_type: "POST")
+      RequestType.create(request_type: "POST")
+      RequestType.create(request_type: "POST")
+      RequestType.create(request_type: "GET")
+
+      expect(RequestType.most_frequent_request_type).to eq("POST")
+    end
+  end
+
+  describe ".all_http_verbs" do
+    it "can list all http verbs used" do
+      RequestType.create(request_type: "GET")
+      RequestType.create(request_type: "POST")
+
+      expect(RequestType.all_http_verbs).to eq(["GET", "POST"])
+    end
+  end
 end

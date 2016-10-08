@@ -36,4 +36,57 @@ RSpec.describe "payload" do
       expect(payload).to_not be_valid
     end
   end
+
+  describe ".average_response_time" do
+    it "can calculate average response time" do
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 36
+                    })
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 40
+                    })
+
+      expect(Payload.average_response_time).to eq(38)
+    end
+  end
+
+  describe ".max_response_time" do
+    it "can find the max response time accross all payloads" do
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 36
+                    })
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 97
+                    })
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 40
+                    })
+
+      expect(Payload.max_response_time).to eq(97)
+    end
+  end
+
+  describe ".min_response_time" do
+    it "can find the minimum response time accross all payloads" do
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 36
+                    })
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 3
+                    })
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 40
+                    })
+
+      expect(Payload.min_response_time).to eq(3)
+    end
+  end
 end
