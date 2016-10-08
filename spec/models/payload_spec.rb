@@ -5,7 +5,7 @@ RSpec.describe "payload" do
     it "can add a payload to the database" do
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
-                      responded_in: 37,
+                      responded_in: 37
                     })
 
       expect(Payload.first.responded_in).to eq(37)
@@ -14,11 +14,11 @@ RSpec.describe "payload" do
     it "can add multiple payloads" do
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
-                      responded_in: 37,
+                      responded_in: 37
                     })
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
-                      responded_in: 40,
+                      responded_in: 40
                     })
       expect(Payload.first.responded_in).to eq(37)
       expect(Payload.find(2).responded_in).to eq(40)
