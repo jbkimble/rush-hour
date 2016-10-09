@@ -32,16 +32,39 @@ RSpec.describe "u_agent" do
     end
   end
 
-  # describe ".browser_breakdown" do
-  #   it "returns 2d array of browsers with count" do
-  #     UAgent.create(browser: "Chrome", operating_system: "Linux")
-  #     UAgent.create(browser: "Safari", operating_system: "Linux")
-  #     Payload.create(requested_at: "stuff", responded_in: 3)
-  #     Payload.create(requested_at: "stuff", responded_in: 3)
-  #     Payload.create(requested_at: "stuff", responded_in: 3)
-  #     expected = {"Chrome" => 2, "Safari" => 1}
-  #
-  #     expect(UAgent.browser_breakdown).to eq(expected)
-  #   end
-  # end
+  describe ".browser_breakdown" do
+    it "returns a hash of browsers with count" do
+      chrome = UAgent.create(browser: "Chrome", operating_system: "Linux")
+      safari = UAgent.create(browser: "Safari", operating_system: "Linux")
+      chrome2 = UAgent.create(browser: "Chrome", operating_system: "Windows")
+      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: 1, referred_by_id: 1, request_type_id: 1, event_name_id: 1, u_agent_id: chrome.id, resolution_id: 1, ip_id: 1 })
+      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: 1, referred_by_id: 1, request_type_id: 1, event_name_id: 1, u_agent_id: chrome.id, resolution_id: 1, ip_id: 1 })
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: 1,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: chrome2.id,
+                      resolution_id: 1,
+                      ip_id: 1
+                    })
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: 1,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: safari.id,
+                      resolution_id: 1,
+                      ip_id: 1
+                    })
+
+      expected = {"Chrome" => 3, "Safari" => 1}
+
+      expect(UAgent.browser_breakdown).to eq(expected)
+    end
+  end
 end

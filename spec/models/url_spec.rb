@@ -20,11 +20,22 @@ RSpec.describe "url" do
 
   describe ".list_urls_from_most_least" do
     it "can list urls from most used to least used" do
-      Url.create(url: "This url")
-      Url.create(url: "Some_url")
-      Url.create(url: "Some_url")
-      Url.create(url: "Some_url")
-      Url.create(url: "This url")
+      url1 = Url.create(url: "Some_url")
+      url2 = Url.create(url: "This url")
+      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: url1.id, referred_by_id: 1, request_type_id: 1, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1 })
+      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: url1.id, referred_by_id: 1, request_type_id: 1, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1 })
+      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: url1.id, referred_by_id: 1, request_type_id: 1, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1 })
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: url2.id,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: 1,
+                      ip_id: 1
+                    })
 
       expect(Url.list_urls_from_most_least).to eq(["Some_url", "This url"])
     end

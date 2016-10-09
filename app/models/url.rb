@@ -5,8 +5,8 @@ class Url < ActiveRecord::Base
   has_many :payloads
 
   def self.list_urls_from_most_least
-    grouped = Url.all.group_by { |url| url.url }
-    final = grouped.sort_by { |url, group| group.count }
-    final.reduce([]) {|array, group| array << group.first unless array.include?(group.first)}.reverse
+    grouped = Payload.group(:url_id).count
+    sorted = grouped.sort_by{|id, count| count}.reverse
+    sorted.map{|(id, count)| Url.find(id).url}
   end
 end

@@ -1,5 +1,3 @@
-require 'pry'
-
 class RequestType < ActiveRecord::Base
   validates :request_type, presence: true
 
