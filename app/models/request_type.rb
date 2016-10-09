@@ -6,12 +6,11 @@ class RequestType < ActiveRecord::Base
   has_many :payloads
 
   def self.most_frequent_request_type
-    grouped = RequestType.all.group_by { |request| request.request_type }
-    grouped.max_by { |type, group| group.count }.first
+    id = Payload.group(:request_type_id).count.max_by {|key, value| value}.first
+    RequestType.find(id).request_type
   end
 
   def self.all_http_verbs
-    RequestType.all.reduce([]) { |array, req| array << req.request_type unless
-      array.include?(req.request_type) }
+    RequestType.pluck(:request_type)
   end
 end

@@ -32,16 +32,16 @@ RSpec.describe "u_agent" do
     end
   end
 
-  describe ".browser_breakdown" do
-    it "returns 2d array of browsers with count" do
-      UAgent.create(browser: "Chrome", operating_system: "Linux")
-      UAgent.create(browser: "Safari", operating_system: "Linux")
-      Payload.create(requested_at: "stuff", responded_in: 3)
-      Payload.create(requested_at: "stuff", responded_in: 3)
-      Payload.create(requested_at: "stuff", responded_in: 3)
-      expected = {"Chrome" => 2, "Safari" => 1}
-
-      expect(UAgent.browser_breakdown).to eq(expected)
-    end
-  end
+  # describe ".browser_breakdown" do
+  #   it "returns 2d array of browsers with count" do
+  #     UAgent.create(browser: "Chrome", operating_system: "Linux")
+  #     UAgent.create(browser: "Safari", operating_system: "Linux")
+  #     Payload.create(requested_at: "stuff", responded_in: 3)
+  #     Payload.create(requested_at: "stuff", responded_in: 3)
+  #     Payload.create(requested_at: "stuff", responded_in: 3)
+  #     expected = {"Chrome" => 2, "Safari" => 1}
+  #
+  #     expect(UAgent.browser_breakdown).to eq(expected)
+  #   end
+  # end
 end

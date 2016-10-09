@@ -1,6 +1,6 @@
 class Payload < ActiveRecord::Base
-  validates :requested_at, :responded_in,
-            presence: true
+  validates :requested_at, :responded_in, :url_id, :referred_by_id,
+  :request_type_id, :event_name_id, :u_agent_id, :resolution_id, :ip_id, presence: true
 
   belongs_to :url
   belongs_to :referred_by
@@ -11,14 +11,14 @@ class Payload < ActiveRecord::Base
   belongs_to :ip
 
   def self.average_response_time
-    Payload.all.reduce(0) {|sum, payload| sum += payload.responded_in }/Payload.all.count
+    Payload.average(:responded_in)
   end
 
   def self.max_response_time
-    Payload.all.max_by {|payload| payload.responded_in}.responded_in
+    Payload.maximum(:responded_in)
   end
 
   def self.min_response_time
-    Payload.all.min_by {|payload| payload.responded_in}.responded_in
+    Payload.minimum(:responded_in)
   end
 end

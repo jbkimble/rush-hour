@@ -27,13 +27,23 @@ RSpec.describe "request_type" do
 
   describe ".most_frequent_request_type" do
     it "can find most frequent request type" do
-      RequestType.create(request_type: "GET")
-      RequestType.create(request_type: "POST")
-      RequestType.create(request_type: "POST")
-      RequestType.create(request_type: "POST")
-      RequestType.create(request_type: "GET")
+      get = RequestType.create(request_type: "GET")
+      post = RequestType.create(request_type: "POST")
+      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: 1, referred_by_id: 1, request_type_id: get.id, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1 })
+      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: 1, referred_by_id: 1, request_type_id: post.id, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1 })
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: 1,
+                      referred_by_id: 1,
+                      request_type_id: get.id,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: 1,
+                      ip_id: 1
+                    })
 
-      expect(RequestType.most_frequent_request_type).to eq("POST")
+      expect(RequestType.most_frequent_request_type).to eq("GET")
     end
   end
 
