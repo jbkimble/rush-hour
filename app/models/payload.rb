@@ -6,7 +6,7 @@ class Payload < ActiveRecord::Base
   belongs_to :referred_by
   belongs_to :request_type
   belongs_to :event_name
-  belongs_to :user_agent
+  belongs_to :u_agent
   belongs_to :resolution
   belongs_to :ip
 
