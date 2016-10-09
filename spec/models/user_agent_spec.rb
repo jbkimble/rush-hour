@@ -1,27 +1,34 @@
 require_relative "../spec_helper"
 
-RSpec.describe "user_agent" do
-  describe "add user_agent" do
-    it "can add a user_agent to the user_agents table" do
-      UserAgent.create(user_agent: "GET")
+RSpec.describe "u_agent" do
+  describe "add u_agent" do
+    it "can add a u_agent to the user_agents table" do
+      UAgent.create(browser: "Chrome", operating_system: "Linux")
 
-      expect(UserAgent.first.user_agent).to eq("GET")
+      expect(UAgent.first.browser).to eq("Chrome")
+      expect(UAgent.first.operating_system).to eq("Linux")
     end
 
-    it "can add multiple user_agent to the user_agents table" do
-      UserAgent.create(user_agent: "GET")
-      UserAgent.create(user_agent: "POST")
+    it "can add multiple u_agent to the user_agents table" do
+      UAgent.create(browser: "Chrome", operating_system: "Linux")
+      UAgent.create(browser: "Chrome", operating_system: "Windows")
 
-      expect(UserAgent.first.user_agent).to eq("GET")
-      expect(UserAgent.last.user_agent).to eq("POST")
+      expect(UAgent.first.operating_system).to eq("Linux")
+      expect(UAgent.last.operating_system).to eq("Windows")
     end
   end
 
-  describe "request" do
-    it "is invalid without a user_agents type" do
-      request = UserAgent.new()
+  describe "u_agent" do
+    it "is invalid without a browser" do
+      agent = UAgent.new(operating_system: "Linux")
 
-      expect(request).to_not be_valid
+      expect(agent).to_not be_valid
+    end
+
+    it "is invalid without a operating_system" do
+      agent = UAgent.new(browser: "Chrome")
+
+      expect(agent).to_not be_valid
     end
   end
 end

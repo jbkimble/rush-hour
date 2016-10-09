@@ -1,5 +1,5 @@
-class UserAgent < ActiveRecord::Base
-  validates :user_agent, presence: true
+class UAgent < ActiveRecord::Base
+  validates :browser, :operating_system, presence: true
 
   has_many :payloads
 end
