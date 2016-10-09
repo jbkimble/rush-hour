@@ -41,4 +41,168 @@ RSpec.describe "url" do
     end
   end
 
+  describe(".max_response_time") do
+    it "can find max response time for a specific url" do
+      url1 = Url.create(url: "1")
+      url2 = Url.create(url: "2")
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: url1.id,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: 1,
+                      ip_id: 1})
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: url2.id,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: 1,
+                      ip_id: 1
+                    })
+
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 38,
+                      url_id: url1.id,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: 1,
+                      ip_id: 1
+                    })
+      expect(Url.max_response_time("1")).to eq(38)
+    end
+  end
+
+  describe(".min_response_time") do
+    it "can find min response time for a specific url" do
+      url1 = Url.create(url: "1")
+      url2 = Url.create(url: "2")
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: url1.id,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: 1,
+                      ip_id: 1})
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: url2.id,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: 1,
+                      ip_id: 1
+                    })
+
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 38,
+                      url_id: url1.id,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: 1,
+                      ip_id: 1
+                    })
+      expect(Url.min_response_time("1")).to eq(37)
+    end
+  end
+
+  describe ".all_response_times" do
+    it "returns sorted array from high to low" do
+      url1 = Url.create(url: "1")
+      url2 = Url.create(url: "2")
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: url1.id,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: 1,
+                      ip_id: 1})
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: url2.id,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: 1,
+                      ip_id: 1
+                    })
+
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 38,
+                      url_id: url1.id,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: 1,
+                      ip_id: 1
+                    })
+      expect(Url.all_response_times("1")).to eq([38,37])
+    end
+  end
+
+  describe ".average_response_time" do
+    it "returns average_response_time for url" do
+      url1 = Url.create(url: "1")
+      url2 = Url.create(url: "2")
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: url1.id,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: 1,
+                      ip_id: 1})
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: url2.id,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: 1,
+                      ip_id: 1
+                    })
+
+      Payload.create({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 39,
+                      url_id: url1.id,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: 1,
+                      ip_id: 1
+                    })
+      expect(Url.average_response_time("1")).to eq(38)
+    end
+  end
+
 end
