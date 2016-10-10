@@ -314,7 +314,7 @@ RSpec.describe "url" do
       agent4 = UAgent.create(browser: "Tor", operating_system: "Unix")
 
 
-      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: url1.id, request_type_id: 1, referred_by_id: 1, event_name_id: 1, u_agent_id: agent4.id, resolution_id: 1, ip_id: 1, client_id: 1})
+      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url: url1, request_type_id: 1, referred_by_id: 1, event_name_id: 1, u_agent: agent4, resolution_id: 1, ip_id: 1, client_id: 1})
       Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: url1.id, request_type_id: 1, referred_by_id: 1, event_name_id: 1, u_agent_id: agent4.id, resolution_id: 1, ip_id: 1, client_id: 1})
       Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 39, url_id: url1.id, request_type_id: 1, referred_by_id: 1, event_name_id: 1, u_agent_id: agent4.id, resolution_id: 1, ip_id: 1, client_id: 1})
       Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 39, url_id: url1.id, request_type_id: 1, referred_by_id: 1, event_name_id: 1, u_agent_id: agent4.id, resolution_id: 1, ip_id: 1, client_id: 1})

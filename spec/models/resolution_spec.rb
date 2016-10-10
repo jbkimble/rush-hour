@@ -17,7 +17,8 @@ RSpec.describe "resolution" do
       expect(Resolution.first.resolution_width).to eq("50")
 
       expect(Resolution.last.resolution_height).to eq("200")
-      expect(Resolution.last.resolution_width).to eq("300")    end
+      expect(Resolution.last.resolution_width).to eq("300")
+    end
   end
 
   describe "request" do

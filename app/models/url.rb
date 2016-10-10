@@ -23,15 +23,15 @@ class Url < ActiveRecord::Base
     Payload.where(url_id: url_id.ids).minimum(:responded_in)
   end
 
-  def self.all_response_times(input_url)
-    url_id = Url.where(url: input_url)
-    Payload.where(url_id: url_id.ids)
-    .map {|payload| payload.responded_in}.sort.reverse
+  def all_response_times
+    # url_id = Url.where(url: input_url)
+    # Payload.where(url_id: url_id.ids)
+    self.payloads.map {|payload| payload.responded_in}.sort.reverse
   end
 
-  def self.average_response_time(input_url)
-    url_id = Url.where(url: input_url)
-    Payload.where(url_id: url_id.ids).average(:responded_in)
+  def average_response_time
+    # url_id = Url.where(url: input_url)
+    self.payloads.average(:responded_in)
   end
 
   def self.list_http_verbs(input_url)
