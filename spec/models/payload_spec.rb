@@ -88,6 +88,7 @@ RSpec.describe "payload" do
                               client_id: 1})
       expect(payload).to_not be_valid
     end
+
     it "is invalid without referred_by_id" do
       payload = Payload.new({ requested_at: "time",
                               responded_in: 37,
@@ -100,6 +101,7 @@ RSpec.describe "payload" do
                               client_id: 1})
       expect(payload).to_not be_valid
     end
+
     it "is invalid without request_type_id" do
       payload = Payload.new({ requested_at: "time",
                               responded_in: 37,
@@ -112,6 +114,7 @@ RSpec.describe "payload" do
                               client_id: 1})
       expect(payload).to_not be_valid
     end
+
     it "is invalid without event_name_id" do
       payload = Payload.new({ requested_at: "time",
                               responded_in: 37,
@@ -124,6 +127,7 @@ RSpec.describe "payload" do
                               client_id: 1})
       expect(payload).to_not be_valid
     end
+
     it "is invalid without u_agent_id" do
       payload = Payload.new({ requested_at: "time",
                               responded_in: 37,
@@ -136,6 +140,7 @@ RSpec.describe "payload" do
                               client_id: 1})
       expect(payload).to_not be_valid
     end
+
     it "is invalid without resolution_id" do
       payload = Payload.new({ requested_at: "time",
                               responded_in: 37,
@@ -148,6 +153,7 @@ RSpec.describe "payload" do
                               client_id: 1})
       expect(payload).to_not be_valid
     end
+
     it "is invalid without ip_id" do
       payload = Payload.new({ requested_at: "time",
                               responded_in: 37,
@@ -159,6 +165,7 @@ RSpec.describe "payload" do
                               resolution_id: 1})
       expect(payload).to_not be_valid
     end
+    
     it "is invalid without client_id" do
       payload = Payload.new({ responded_in: 37,
                               url_id: 1,
