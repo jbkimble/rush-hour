@@ -23,4 +23,5 @@ class Payload < ActiveRecord::Base
   def self.min_response_time
     Payload.minimum(:responded_in)
   end
+
 end
