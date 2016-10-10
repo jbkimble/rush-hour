@@ -30,53 +30,49 @@ RSpec.describe "resolution" do
 
   describe ".resolutions_across_payloads" do
     it "can find all the resultion combinations across payloads" do
-      resolution1 = Resolution.create(resolution_width:  1,
-                                      resolution_height: 1)
-      resolution2 = Resolution.create(resolution_width:  2,
-                                      resolution_height: 2)
-      resolution3 = Resolution.create(resolution_width:  3,
-                                      resolution_height: 3)
+      resolution1 = Resolution.create(resolution_width:  1, resolution_height: 1)
+      resolution2 = Resolution.create(resolution_width:  2, resolution_height: 2)
+      resolution3 = Resolution.create(resolution_width:  3, resolution_height: 3)
       Payload.create({
-                                      requested_at: "2013-02-16 21:38:28 -0700",
-                                      responded_in: 37,
-                                      url_id: 1,
-                                      referred_by_id: 1,
-                                      request_type_id: 1,
-                                      event_name_id: 1,
-                                      u_agent_id: 1,
-                                      resolution_id: resolution1.id,
-                                      ip_id: 1})
-
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: 1,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: resolution1.id,
+                      ip_id: 1})
       Payload.create({
-                                      requested_at: "2013-02-16 21:38:28 -0700",
-                                      responded_in: 37,
-                                      url_id: 1,
-                                      referred_by_id: 1,
-                                      request_type_id: 1,
-                                      event_name_id: 1,
-                                      u_agent_id: 1,
-                                      resolution_id: resolution1.id,
-                                      ip_id: 1})
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: 1,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: resolution1.id,
+                      ip_id: 1})
       Payload.create({
-                                      requested_at: "2013-02-16 21:38:28 -0700",
-                                      responded_in: 37,
-                                      url_id: 1,
-                                      referred_by_id: 1,
-                                      request_type_id: 1,
-                                      event_name_id: 1,
-                                      u_agent_id: 1,
-                                      resolution_id: resolution2.id,
-                                      ip_id: 1})
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: 1,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: resolution2.id,
+                      ip_id: 1})
       Payload.create({
-                                      requested_at: "2013-02-16 21:38:28 -0700",
-                                      responded_in: 37,
-                                      url_id: 1,
-                                      referred_by_id: 1,
-                                      request_type_id: 1,
-                                      event_name_id: 1,
-                                      u_agent_id: 1,
-                                      resolution_id: resolution3.id,
-                                      ip_id: 1})
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 37,
+                      url_id: 1,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: resolution3.id,
+                      ip_id: 1})
       expected = [["1","1"],["2","2"],["3","3"]]
 
       expect(Resolution.resolutions_across_payloads).to eq(expected)
