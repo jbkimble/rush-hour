@@ -29,8 +29,8 @@ RSpec.describe "request_type" do
     it "can find most frequent request type" do
       get = RequestType.create(request_type: "GET")
       post = RequestType.create(request_type: "POST")
-      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: 1, referred_by_id: 1, request_type_id: get.id, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1 })
-      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: 1, referred_by_id: 1, request_type_id: post.id, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1 })
+      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: 1, referred_by_id: 1, request_type_id: get.id, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1, client_id: 1 })
+      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: 1, referred_by_id: 1, request_type_id: post.id, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1, client_id: 1 })
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
                       responded_in: 37,
@@ -40,7 +40,8 @@ RSpec.describe "request_type" do
                       event_name_id: 1,
                       u_agent_id: 1,
                       resolution_id: 1,
-                      ip_id: 1
+                      ip_id: 1,
+                      client_id: 2
                     })
 
       expect(RequestType.most_frequent_request_type).to eq("GET")

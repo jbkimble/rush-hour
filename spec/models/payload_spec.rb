@@ -12,7 +12,8 @@ RSpec.describe "payload" do
                       event_name_id: 1,
                       u_agent_id: 1,
                       resolution_id: 1,
-                      ip_id: 1
+                      ip_id: 1,
+                      client_id: 1
                     })
 
       expect(Payload.first.responded_in).to eq(37)
@@ -28,7 +29,8 @@ RSpec.describe "payload" do
                       event_name_id: 1,
                       u_agent_id: 1,
                       resolution_id: 1,
-                      ip_id: 1
+                      ip_id: 1,
+                      client_id: 1
                     })
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
@@ -39,7 +41,8 @@ RSpec.describe "payload" do
                       event_name_id: 1,
                       u_agent_id: 1,
                       resolution_id: 1,
-                      ip_id: 1
+                      ip_id: 1,
+                      client_id: 1
                     })
       expect(Payload.first.responded_in).to eq(37)
       expect(Payload.find(2).responded_in).to eq(40)
@@ -55,7 +58,8 @@ RSpec.describe "payload" do
                               event_name_id: 1,
                               u_agent_id: 1,
                               resolution_id: 1,
-                              ip_id: 1})
+                              ip_id: 1,
+                              client_id: 1})
       expect(payload).to_not be_valid
     end
 
@@ -67,7 +71,8 @@ RSpec.describe "payload" do
                               event_name_id: 1,
                               u_agent_id: 1,
                               resolution_id: 1,
-                              ip_id: 1})
+                              ip_id: 1,
+                              client_id: 1})
       expect(payload).to_not be_valid
     end
 
@@ -79,7 +84,8 @@ RSpec.describe "payload" do
                               event_name_id: 1,
                               u_agent_id: 1,
                               resolution_id: 1,
-                              ip_id: 1})
+                              ip_id: 1,
+                              client_id: 1})
       expect(payload).to_not be_valid
     end
     it "is invalid without referred_by_id" do
@@ -90,7 +96,8 @@ RSpec.describe "payload" do
                               event_name_id: 1,
                               u_agent_id: 1,
                               resolution_id: 1,
-                              ip_id: 1})
+                              ip_id: 1,
+                              client_id: 1})
       expect(payload).to_not be_valid
     end
     it "is invalid without request_type_id" do
@@ -101,7 +108,8 @@ RSpec.describe "payload" do
                               event_name_id: 1,
                               u_agent_id: 1,
                               resolution_id: 1,
-                              ip_id: 1})
+                              ip_id: 1,
+                              client_id: 1})
       expect(payload).to_not be_valid
     end
     it "is invalid without event_name_id" do
@@ -112,7 +120,8 @@ RSpec.describe "payload" do
                               request_type_id: 1,
                               u_agent_id: 1,
                               resolution_id: 1,
-                              ip_id: 1})
+                              ip_id: 1,
+                              client_id: 1})
       expect(payload).to_not be_valid
     end
     it "is invalid without u_agent_id" do
@@ -123,7 +132,8 @@ RSpec.describe "payload" do
                               request_type_id: 1,
                               event_name_id: 1,
                               resolution_id: 1,
-                              ip_id: 1})
+                              ip_id: 1,
+                              client_id: 1})
       expect(payload).to_not be_valid
     end
     it "is invalid without resolution_id" do
@@ -134,7 +144,8 @@ RSpec.describe "payload" do
                               request_type_id: 1,
                               event_name_id: 1,
                               u_agent_id: 1,
-                              ip_id: 1})
+                              ip_id: 1,
+                              client_id: 1})
       expect(payload).to_not be_valid
     end
     it "is invalid without ip_id" do
@@ -146,6 +157,19 @@ RSpec.describe "payload" do
                               event_name_id: 1,
                               u_agent_id: 1,
                               resolution_id: 1})
+      expect(payload).to_not be_valid
+    end
+    it "is invalid without client_id" do
+      payload = Payload.new({ responded_in: 37,
+                              url_id: 1,
+                              requested_at: "1",
+                              referred_by_id: 1,
+                              request_type_id: 1,
+                              event_name_id: 1,
+                              u_agent_id: 1,
+                              resolution_id: 1,
+                              ip_id: 1
+                              })
       expect(payload).to_not be_valid
     end
   end
@@ -160,7 +184,8 @@ RSpec.describe "payload" do
                     event_name_id: 1,
                     u_agent_id: 1,
                     resolution_id: 1,
-                    ip_id: 1})
+                    ip_id: 1,
+                    client_id: 1})
       Payload.create({ requested_at: "time",
                     responded_in: 40,
                     url_id: 1,
@@ -169,7 +194,8 @@ RSpec.describe "payload" do
                     event_name_id: 1,
                     u_agent_id: 1,
                     resolution_id: 1,
-                    ip_id: 1})
+                    ip_id: 1,
+                    client_id: 1})
 
       expect(Payload.average_response_time).to eq(38)
     end
@@ -186,7 +212,8 @@ RSpec.describe "payload" do
                       event_name_id: 1,
                       u_agent_id: 1,
                       resolution_id: 1,
-                      ip_id: 1
+                      ip_id: 1,
+                      client_id: 1
                     })
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
@@ -197,7 +224,8 @@ RSpec.describe "payload" do
                       event_name_id: 1,
                       u_agent_id: 1,
                       resolution_id: 1,
-                      ip_id: 1
+                      ip_id: 1,
+                      client_id: 1
                     })
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
@@ -208,7 +236,8 @@ RSpec.describe "payload" do
                       event_name_id: 1,
                       u_agent_id: 1,
                       resolution_id: 1,
-                      ip_id: 1
+                      ip_id: 1,
+                      client_id: 1
                     })
 
       expect(Payload.max_response_time).to eq(97)
@@ -226,7 +255,8 @@ RSpec.describe "payload" do
                       event_name_id: 1,
                       u_agent_id: 1,
                       resolution_id: 1,
-                      ip_id: 1
+                      ip_id: 1,
+                      client_id: 1
                     })
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
@@ -237,7 +267,8 @@ RSpec.describe "payload" do
                       event_name_id: 1,
                       u_agent_id: 1,
                       resolution_id: 1,
-                      ip_id: 1
+                      ip_id: 1,
+                      client_id: 1
                     })
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
@@ -248,7 +279,8 @@ RSpec.describe "payload" do
                       event_name_id: 1,
                       u_agent_id: 1,
                       resolution_id: 1,
-                      ip_id: 1
+                      ip_id: 1,
+                      client_id: 1
                     })
 
       expect(Payload.min_response_time).to eq(3)
