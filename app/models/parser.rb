@@ -1,6 +1,4 @@
 require 'json'
-require 'pry'
-
 
 module Parser
   def self.parse_payload(json_string)

@@ -8,17 +8,19 @@ module RushHour
 
     post '/sources/:IDENTIFIER/data' do
       client = Client.find_by(identifier:params["IDENTIFIER"])
-      binding.pry
-      # client = Client.find_or_create_by()
-      # @payload = params[:payload]
-      # binding.pry
-      # if @payload.nil?
-      #   status 400
-      #   body "Missing Payload - 400 Bad Request"
-      # elsif Payload.exists?
-      #   status 403
-      # end
-
+      if params[:payload].nil?
+        status 400
+        body "Missing Payload - 400 Bad Request"
+      elsif !client
+        status 403
+        body "Application Not Registered - 403 Forbidden"
+      elsif Payload.already_exists?(params)
+        status 403
+        body "Already Recieved Request  #{ params["IDENTIFIER"]} -  403 Forbidden "
+      else
+        client.populate(params[:payload])
+        status 200
+      end
     end
 
     post '/sources' do
