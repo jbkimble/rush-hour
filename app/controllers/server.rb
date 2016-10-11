@@ -60,5 +60,19 @@ module RushHour
       end
     end
 
+    get '/sources/:IDENTIFIER/urls/:RELATIVEPATH' do
+      @client = Client.find_by(identifier: params["IDENTIFIER"])
+      @url = @client.urls.find_by(url: @client.root_url + "/#{params["RELATIVEPATH"]}")
+
+      erb :"urls/show"
+    end
+
+    get '/sources/:IDENTIFIER/urls' do
+      @client = Client.find_by(identifier: params["IDENTIFIER"])
+      erb :"urls/index"
+    end
+
+
+
   end
 end

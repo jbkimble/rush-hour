@@ -1,0 +1,4 @@
+<h3>All URLs for <%= @client.identifier %></h3>
+<% @client.urls.uniq.each do |url| %>
+<h5><a href="/sources/<%=@client.identifier%>/urls/<%=url.relative_path%>"> <%= url.url %></a></h5>
+<% end %>

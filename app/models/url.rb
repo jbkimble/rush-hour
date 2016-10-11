@@ -35,11 +35,16 @@ class Url < ActiveRecord::Base
   def three_most_popular_referrers
     referred_bies.group(:referred_by).count.sort_by {|url, count| count}.reverse
     .map{|url, count| url }[0..2]
+    binding.pry
   end
 
   def three_most_popular_user_agents
     u_agents.group(:id).count.sort_by{|id, count| count}.reverse
     .map{|id, count| [UAgent.find(id).browser, UAgent.find(id).operating_system]}[0..2]
+  end
+
+  def relative_path
+    relative = self.url.split('.com/').last
   end
 
 end
