@@ -1,3 +1,4 @@
+require "pry"
 class Url < ActiveRecord::Base
   validates :url, presence: true
 
@@ -35,7 +36,6 @@ class Url < ActiveRecord::Base
   def three_most_popular_referrers
     referred_bies.group(:referred_by).count.sort_by {|url, count| count}.reverse
     .map{|url, count| url }[0..2]
-    binding.pry
   end
 
   def three_most_popular_user_agents

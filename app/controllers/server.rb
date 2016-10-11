@@ -63,8 +63,15 @@ module RushHour
     get '/sources/:IDENTIFIER/urls/:RELATIVEPATH' do
       @client = Client.find_by(identifier: params["IDENTIFIER"])
       @url = @client.urls.find_by(url: @client.root_url + "/#{params["RELATIVEPATH"]}")
-
-      erb :"urls/show"
+      if !@url
+        @status_code = 404
+        @status_message = "Relative path #{params["RELATIVEPATH"]} not found"
+        status 404
+        body "Relative path #{params["RELATIVEPATH"]} not found"
+        erb :error
+      else
+        erb :"urls/show"
+      end
     end
 
     get '/sources/:IDENTIFIER/urls' do
