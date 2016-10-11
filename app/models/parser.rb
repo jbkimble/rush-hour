@@ -1,6 +1,7 @@
 require 'json'
 require 'pry'
 
+
 module Parser
   def self.parse_payload(json_string)
     parsed = JSON.parse(json_string)
@@ -11,7 +12,7 @@ module Parser
     end
   end
 
-  def to_snakecase(word)
+  def self.to_snakecase(word)
     word.gsub(/(.)([A-Z])/, '\1_\2').downcase.to_sym
   end
 end

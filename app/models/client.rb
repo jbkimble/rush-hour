@@ -1,6 +1,6 @@
 require 'pry'
-require 'useragent'
-require_relative 'parser'
+require './app/models/parser'
+require 'user_agent_parser'
 
 class Client < ActiveRecord::Base
   include Parser
@@ -17,13 +17,13 @@ class Client < ActiveRecord::Base
 
   def populate(payload)
     parsed_payload = Parser.parse_payload(payload)
-    agent = UserAgent.parse(parsed_payload[:user_agent])
+    agent = UserAgentParser.parse(parsed_payload[:user_agent])
 
     url = Url.find_or_create_by(url: parsed_payload[:url])
     referred_by = ReferredBy.find_or_create_by(referred_by: parsed_payload[:referred_by])
     request_type = RequestType.find_or_create_by(request_type: parsed_payload[:request_type])
     event_name = EventName.find_or_create_by(event_name: parsed_payload[:event_name])
-    u_agent = UAgent.find_or_create_by(browser: agent.browser, operating_system: agent.platform)
+    u_agent = UAgent.find_or_create_by(browser: agent.family, operating_system: agent.os.family)
     resolution = Resolution.find_or_create_by(resolution_width: parsed_payload[:resolution_width], resolution_height: parsed_payload[:resolution_height])
     ip = Ip.find_or_create_by(ip: parsed_payload[:ip])
 

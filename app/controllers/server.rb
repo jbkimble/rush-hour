@@ -1,10 +1,28 @@
+require 'pry'
+
 module RushHour
   class Server < Sinatra::Base
     not_found do
       erb :error
     end
 
+    post '/sources/:IDENTIFIER/data' do
+      client = Client.find_by(identifier:params["IDENTIFIER"])
+      binding.pry
+      # client = Client.find_or_create_by()
+      # @payload = params[:payload]
+      # binding.pry
+      # if @payload.nil?
+      #   status 400
+      #   body "Missing Payload - 400 Bad Request"
+      # elsif Payload.exists?
+      #   status 403
+      # end
+
+    end
+
     post '/sources' do
+      binding.pry
       @identifier = params[:identifier]
       @root_url = params[:rootUrl]
 
@@ -21,8 +39,6 @@ module RushHour
       end
     end
 
-    post '/sourse/:IDENTIFIER/data' do
-      
-    end
+
   end
 end
