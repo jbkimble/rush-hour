@@ -45,7 +45,6 @@ RSpec.describe "url" do
   describe(".max_response_time") do
     it "can find max response time for a specific url" do
       url1 = Url.create(url: "1")
-      url2 = Url.create(url: "2")
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
                       responded_in: 37,
@@ -57,18 +56,6 @@ RSpec.describe "url" do
                       resolution_id: 1,
                       ip_id: 1,
                       client_id: 1})
-      Payload.create({
-                      requested_at: "2013-02-16 21:38:28 -0700",
-                      responded_in: 37,
-                      url_id: url2.id,
-                      referred_by_id: 1,
-                      request_type_id: 1,
-                      event_name_id: 1,
-                      u_agent_id: 1,
-                      resolution_id: 1,
-                      ip_id: 1,
-                      client_id: 1
-                    })
 
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
@@ -83,14 +70,13 @@ RSpec.describe "url" do
                       client_id: 1
                     })
 
-      expect(Url.max_response_time("1")).to eq(38)
+      expect(url1.max_response_time).to eq(38)
     end
   end
 
   describe(".min_response_time") do
     it "can find min response time for a specific url" do
       url1 = Url.create(url: "1")
-      url2 = Url.create(url: "2")
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
                       responded_in: 37,
@@ -102,18 +88,7 @@ RSpec.describe "url" do
                       resolution_id: 1,
                       ip_id: 1,
                       client_id: 1})
-      Payload.create({
-                      requested_at: "2013-02-16 21:38:28 -0700",
-                      responded_in: 37,
-                      url_id: url2.id,
-                      referred_by_id: 1,
-                      request_type_id: 1,
-                      event_name_id: 1,
-                      u_agent_id: 1,
-                      resolution_id: 1,
-                      ip_id: 1,
-                      client_id: 1
-                    })
+
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
                       responded_in: 38,
@@ -126,14 +101,13 @@ RSpec.describe "url" do
                       ip_id: 1,
                       client_id: 1
                     })
-      expect(Url.min_response_time("1")).to eq(37)
+      expect(url1.min_response_time).to eq(37)
     end
   end
 
   describe ".all_response_times" do
     it "returns sorted array from high to low" do
       url1 = Url.create(url: "1")
-      url2 = Url.create(url: "2")
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
                       responded_in: 37,
@@ -145,18 +119,7 @@ RSpec.describe "url" do
                       resolution_id: 1,
                       ip_id: 1,
                       client_id: 1})
-      Payload.create({
-                      requested_at: "2013-02-16 21:38:28 -0700",
-                      responded_in: 37,
-                      url_id: url2.id,
-                      referred_by_id: 1,
-                      request_type_id: 1,
-                      event_name_id: 1,
-                      u_agent_id: 1,
-                      resolution_id: 1,
-                      ip_id: 1,
-                      client_id: 1
-                    })
+
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
                       responded_in: 38,
@@ -169,14 +132,13 @@ RSpec.describe "url" do
                       ip_id: 1,
                       client_id: 1
                     })
-      expect(Url.all_response_times("1")).to eq([38,37])
+      expect(url1.all_response_times).to eq([38,37])
     end
   end
 
   describe ".average_response_time" do
     it "returns average_response_time for url" do
       url1 = Url.create(url: "1")
-      url2 = Url.create(url: "2")
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
                       responded_in: 37,
@@ -188,18 +150,7 @@ RSpec.describe "url" do
                       resolution_id: 1,
                       ip_id: 1,
                       client_id: 1})
-      Payload.create({
-                      requested_at: "2013-02-16 21:38:28 -0700",
-                      responded_in: 37,
-                      url_id: url2.id,
-                      referred_by_id: 1,
-                      request_type_id: 1,
-                      event_name_id: 1,
-                      u_agent_id: 1,
-                      resolution_id: 1,
-                      ip_id: 1,
-                      client_id: 1
-                    })
+
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
                       responded_in: 39,
@@ -212,14 +163,13 @@ RSpec.describe "url" do
                       ip_id: 1,
                       client_id: 1
                     })
-      expect(Url.average_response_time("1")).to eq(38)
+      expect(url1.average_response_time).to eq(38)
     end
   end
 
   describe ".list_http_verbs" do
     it "lists all verbs for URL" do
       url1 = Url.create(url: "1")
-      url2 = Url.create(url: "2")
       verb1 = RequestType.create(request_type: "GET")
       verb2 = RequestType.create(request_type: "POST")
       verb3 = RequestType.create(request_type: "PUT")
@@ -235,18 +185,7 @@ RSpec.describe "url" do
                       resolution_id: 1,
                       ip_id: 1,
                       client_id: 1})
-      Payload.create({
-                      requested_at: "2013-02-16 21:38:28 -0700",
-                      responded_in: 37,
-                      url_id: url2.id,
-                      referred_by_id: 1,
-                      request_type_id: verb3.id,
-                      event_name_id: 1,
-                      u_agent_id: 1,
-                      resolution_id: 1,
-                      ip_id: 1,
-                      client_id: 1
-                    })
+
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
                       responded_in: 39,
@@ -272,14 +211,13 @@ RSpec.describe "url" do
                       client_id: 1
                     })
 
-      expect(Url.list_http_verbs("1")).to eq(["GET", "POST"])
+      expect(url1.list_http_verbs).to eq(["GET", "POST"])
     end
   end
 
   describe ".three_most_popular_referrers" do
     it "can find the three most popular referrers" do
       url1 = Url.create(url: "1")
-      url2 = Url.create(url: "2")
       refer1 = ReferredBy.create(referred_by: "google.com")
       refer2 = ReferredBy.create(referred_by: "ham.com")
       refer3 = ReferredBy.create(referred_by: "indapaint.com")
@@ -295,19 +233,14 @@ RSpec.describe "url" do
       Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: url1.id, request_type_id: 1, referred_by_id: refer3.id, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1, client_id: 1 })
       Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: url1.id, request_type_id: 1, referred_by_id: refer3.id, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1, client_id: 1 })
       Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 39, url_id: url1.id, request_type_id: 1, referred_by_id: refer4.id, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1, client_id: 1 })
-      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 39, url_id: url2.id, request_type_id: 1, referred_by_id: refer4.id, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1, client_id: 1 })
-      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 39, url_id: url2.id, request_type_id: 1, referred_by_id: refer4.id, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1, client_id: 1 })
-      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 39, url_id: url2.id, request_type_id: 1, referred_by_id: refer4.id, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1, client_id: 1 })
-      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 39, url_id: url2.id, request_type_id: 1, referred_by_id: refer4.id, event_name_id: 1, u_agent_id: 1, resolution_id: 1, ip_id: 1, client_id: 1 })
 
-      expect(Url.three_most_popular_referrers("1")).to eq(["indapaint.com", "ham.com", "google.com"])
+      expect(url1.three_most_popular_referrers).to eq(["indapaint.com", "ham.com", "google.com"])
     end
   end
 
   describe ".three_most_popular_user_agents" do
     it "can find the three most popular user agents" do
       url1 = Url.create(url: "1")
-      url2 = Url.create(url: "2")
       agent1 = UAgent.create(browser: "Chrome", operating_system: "Linux")
       agent2 = UAgent.create(browser: "Firefox", operating_system: "Unix")
       agent3 = UAgent.create(browser: "Chrome", operating_system: "Windows")
@@ -324,10 +257,8 @@ RSpec.describe "url" do
       Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: url1.id, request_type_id: 1, referred_by_id: 1, event_name_id: 1, u_agent_id: agent2.id, resolution_id: 1, ip_id: 1, client_id: 1})
       Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: url1.id, request_type_id: 1, referred_by_id: 1, event_name_id: 1, u_agent_id: agent2.id, resolution_id: 1, ip_id: 1, client_id: 1})
       Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 39, url_id: url1.id, request_type_id: 1, referred_by_id: 1, event_name_id: 1, u_agent_id: agent1.id, resolution_id: 1, ip_id: 1, client_id: 1})
-      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 39, url_id: url2.id, request_type_id: 1, referred_by_id: 1, event_name_id: 1, u_agent_id: agent1.id, resolution_id: 1, ip_id: 1, client_id: 1})
-      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 39, url_id: url2.id, request_type_id: 1, referred_by_id: 1, event_name_id: 1, u_agent_id: agent1.id, resolution_id: 1, ip_id: 1, client_id: 1})
 
-      expect(Url.three_most_popular_user_agents("1")).to eq([["Tor", "Unix"], ["Chrome", "Windows"], ["Firefox", "Unix"]])
+      expect(url1.three_most_popular_user_agents).to eq([["Tor", "Unix"], ["Chrome", "Windows"], ["Firefox", "Unix"]])
     end
   end
 

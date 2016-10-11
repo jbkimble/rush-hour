@@ -12,42 +12,34 @@ class Url < ActiveRecord::Base
     sorted.map{|(id, count)| Url.find(id).url}
   end
 
-  def self.max_response_time(input_url)
-    url_id = Url.where(url: input_url)
-    Payload.where(url_id: url_id.ids).maximum(:responded_in)
+  def max_response_time
+    payloads.maximum(:responded_in)
   end
 
-  def self.min_response_time(input_url)
-    url_id = Url.where(url: input_url)
-    Payload.where(url_id: url_id.ids).minimum(:responded_in)
+  def min_response_time
+    payloads.minimum(:responded_in)
   end
 
-  def self.all_response_times(input_url)
-    url_id = Url.where(url: input_url)
-    Payload.where(url_id: url_id.ids)
-    .map {|payload| payload.responded_in}.sort.reverse
+  def all_response_times
+    payloads.map {|payload| payload.responded_in}.sort.reverse
   end
 
-  def self.average_response_time(input_url)
-    url_id = Url.where(url: input_url)
-    Payload.where(url_id: url_id.ids).average(:responded_in)
+  def average_response_time
+    payloads.average(:responded_in)
   end
 
-  def self.list_http_verbs(input_url)
-    Url.find_by(url: input_url).request_types.pluck(:request_type).uniq
+  def list_http_verbs
+    request_types.pluck(:request_type).uniq
   end
 
-  def self.three_most_popular_referrers(input_url)
-    grouped = Url.find_by(url: input_url).referred_bies.group(:referred_by).count
-    grouped.sort_by { |url, count| count}.reverse
+  def three_most_popular_referrers
+    referred_bies.group(:referred_by).count.sort_by {|url, count| count}.reverse
     .map{|url, count| url }[0..2]
   end
 
-  def self.three_most_popular_user_agents(input_url)
-    u_agents = Url.find_by(url: input_url).u_agents
-    grouped = u_agents.group(:id).count
-    sorted = grouped.sort_by{|id, count| count}.reverse
-    sorted.map{|id, count| [UAgent.find(id).browser, UAgent.find(id).operating_system]}[0..2]
+  def three_most_popular_user_agents
+    u_agents.group(:id).count.sort_by{|id, count| count}.reverse
+    .map{|id, count| [UAgent.find(id).browser, UAgent.find(id).operating_system]}[0..2]
   end
 
 end
