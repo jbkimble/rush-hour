@@ -42,7 +42,22 @@ module RushHour
 
     get "/sources/:IDENTIFIER" do
       @client = Client.find_by(identifier: params["IDENTIFIER"])
-      erb :show
+
+      if !@client
+        @status_code = 404
+        @status_message = "#{params["IDENTIFIER"]} not found"
+        status 404
+        body "#{params["IDENTIFIER"]} not found"
+        erb :error
+      elsif @client && @client.payloads.empty?
+        @status_code = 404
+        @status_message = "#{params["IDENTIFIER"]} payloads not found"
+        status 404
+        body "#{params["IDENTIFIER"]} payloads not found"
+        erb :error
+      else
+        erb :show
+      end
     end
 
   end
