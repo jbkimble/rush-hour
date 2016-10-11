@@ -46,4 +46,5 @@ class Payload < ActiveRecord::Base
                         resolution: resolution, ip: ip)
   end
 
+  
 end

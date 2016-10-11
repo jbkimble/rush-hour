@@ -165,7 +165,7 @@ RSpec.describe "payload" do
                               resolution_id: 1})
       expect(payload).to_not be_valid
     end
-    
+
     it "is invalid without client_id" do
       payload = Payload.new({ responded_in: 37,
                               url_id: 1,
@@ -293,4 +293,6 @@ RSpec.describe "payload" do
       expect(Payload.min_response_time).to eq(3)
     end
   end
+
+
 end

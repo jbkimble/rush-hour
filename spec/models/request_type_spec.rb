@@ -17,14 +17,6 @@ RSpec.describe "request_type" do
     end
   end
 
-  describe "request" do
-    it "is invalid without a request type" do
-      request = RequestType.new()
-
-      expect(request).to_not be_valid
-    end
-  end
-
   describe ".most_frequent_request_type" do
     it "can find most frequent request type" do
       get = RequestType.create(request_type: "GET")
@@ -47,6 +39,15 @@ RSpec.describe "request_type" do
       expect(RequestType.most_frequent_request_type).to eq("GET")
     end
   end
+
+  describe "request" do
+    it "is invalid without a request type" do
+      request = RequestType.new()
+
+      expect(request).to_not be_valid
+    end
+  end
+
 
   describe ".all_http_verbs" do
     it "can list all http verbs used" do

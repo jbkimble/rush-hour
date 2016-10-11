@@ -41,6 +41,11 @@ module RushHour
       end
     end
 
+    get "/sources/:IDENTIFIER" do
+      @client = Client.find_by(identifier: params["IDENTIFIER"])
+      erb :show
+    end
+
 
   end
 end
