@@ -14,6 +14,7 @@ class Client < ActiveRecord::Base
   has_many :u_agents,       through: :payloads
   has_many :resolutions,    through: :payloads
   has_many :ips,            through: :payloads
+  has_many :urls,           through: :payloads
 
   def populate(payload)
     parsed_payload = Parser.parse_payload(payload)

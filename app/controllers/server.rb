@@ -24,7 +24,6 @@ module RushHour
     end
 
     post '/sources' do
-      binding.pry
       @identifier = params[:identifier]
       @root_url = params[:rootUrl]
 
@@ -45,7 +44,6 @@ module RushHour
       @client = Client.find_by(identifier: params["IDENTIFIER"])
       erb :show
     end
-
 
   end
 end

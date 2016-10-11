@@ -69,11 +69,10 @@ RSpec.describe "u_agent" do
 
   describe ".os_breakdown" do
     it "returns a hash of operating systems with count" do
-      linux = UAgent.create(browser: "Chrome", operating_system: "Linux")
-      linux2 = UAgent.create(browser: "Safari", operating_system: "Linux")
-      windows = UAgent.create(browser: "Chrome", operating_system: "Windows")
-      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: 1, referred_by_id: 1, request_type_id: 1, event_name_id: 1, u_agent_id: linux.id, resolution_id: 1, ip_id: 1, client_id: 1 })
-      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: 1, referred_by_id: 1, request_type_id: 1, event_name_id: 1, u_agent_id: linux.id, resolution_id: 1, ip_id: 1, client_id: 1 })
+      chrome = UAgent.create(browser: "Chrome", operating_system: "Linux")
+      safari = UAgent.create(browser: "Safari", operating_system: "Linux")
+      chrome2 = UAgent.create(browser: "Chrome", operating_system: "Windows")
+      Payload.create({ requested_at: "2013-02-16 21:38:28 -0700", responded_in: 37, url_id: 1, referred_by_id: 1, request_type_id: 1, event_name_id: 1, u_agent_id: chrome.id, resolution_id: 1, ip_id: 1, client_id: 1 })
       Payload.create({
                       requested_at: "2013-02-16 21:38:28 -0700",
                       responded_in: 37,
@@ -81,7 +80,7 @@ RSpec.describe "u_agent" do
                       referred_by_id: 1,
                       request_type_id: 1,
                       event_name_id: 1,
-                      u_agent_id: linux2.id,
+                      u_agent_id: chrome2.id,
                       resolution_id: 1,
                       ip_id: 1, client_id: 1
                     })
@@ -92,12 +91,12 @@ RSpec.describe "u_agent" do
                       referred_by_id: 1,
                       request_type_id: 1,
                       event_name_id: 1,
-                      u_agent_id: windows.id,
+                      u_agent_id: safari.id,
                       resolution_id: 1,
                       ip_id: 1, client_id: 1
                     })
 
-      expected = {"Linux" => 3, "Windows" => 1}
+      expected = {"Linux" => 2, "Windows" => 1}
 
       expect(UAgent.os_breakdown).to eq(expected)
     end
