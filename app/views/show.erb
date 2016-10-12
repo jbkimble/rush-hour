@@ -12,9 +12,8 @@
 
 <div class="container">
 
-<table class="table text-center">
-
-  <h1><%= @client.identifier%></h1>
+<h1 id="identifier"><%= @client.identifier%></h1>
+<table class="table text-center" id="my_table">
     <tr>
       <td>
         <h3>Average Response Time</h3>
@@ -29,7 +28,6 @@
         <p><%= @client.payloads.min_response_time %></p>
       </td>
     </tr>
-
     <tr>
       <td>
         <h3>Most Frequent Request</h3>
@@ -37,9 +35,7 @@
       </td>
       <td>
         <h3>All HTTP Verbs</h3>
-        <p>
-          <%= @client.request_types.all_http_verbs.join(", ") %>
-        </p>
+        <p> <%= @client.request_types.all_http_verbs.join(", ") %> </p>
       </td>
       <td>
         <h3>Web Browser Breakdown</h3>

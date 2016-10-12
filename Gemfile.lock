@@ -105,6 +105,7 @@ DEPENDENCIES
   capybara
   database_cleaner
   launchy
+  nokogiri
   pg
   pry
   pry-coolline

@@ -7,6 +7,7 @@ gem 'sinatra-activerecord'
 gem 'user_agent_parser'
 
 group :development, :test do
+  gem 'nokogiri'
   gem 'shotgun'
   gem 'rspec'
   gem 'rspec-core'

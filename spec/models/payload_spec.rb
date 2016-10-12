@@ -309,7 +309,7 @@ RSpec.describe "payload" do
                       client_id: 1
                     })
 
-      expect(payload.parse_time).to eq([21])
+      expect(payload.parse_time).to eq(21)
     end
   end
 
