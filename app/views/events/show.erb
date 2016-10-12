@@ -13,9 +13,9 @@
 <div class="container">
 
   <h1>24 Hour Breakdown - <%= @event.event_name  %></h1>
-  <table class="table text-center">
+  <table id="events-table" class="table text-center">
     <% (1..24).to_a.each do |hour| %>
-      <td><h3><%= hour %></h3><p><%= @times.count(hour) %></p></td>
+      <td><h3><%= hour %></h3><p class="data-hour"><%= @times.count(hour) %></p></td>
     <% end %>
   </table>
 </div>
