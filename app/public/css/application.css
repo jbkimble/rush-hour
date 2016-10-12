@@ -1,7 +1,13 @@
-body {
+.jumbotron {
   background-image: url(http://d21532kvzc3714.cloudfront.net/wp-content/uploads/2015/01/acxiom-data-packages3.png);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+#login-box .form-control {
+  width: 25%;
+  margin: auto;
+  text-align: center;
 }
