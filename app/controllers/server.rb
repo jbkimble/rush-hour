@@ -79,6 +79,20 @@ module RushHour
       erb :"urls/index"
     end
 
+# /sources/jumpstartlab/sources/jumpstartlab/events/socialLogin
+    get '/sources/:IDENTIFIER/events/:EVENTNAME' do
+      @client = Client.find_by(identifier: params["IDENTIFIER"])
+      @event = @client.event_names.find_by(event_name: params["EVENTNAME"])
+      @set = @client.payloads.where(event_name_id: @event.id)
+      @times = @set.map{|payload| payload.parse_time}
+      erb :"events/show"
+    end
+
+    get '/sources/:IDENTIFIER/events' do
+      @client = Client.find_by(identifier: params["IDENTIFIER"])
+      @events = @client.event_names.pluck(:event_name).uniq
+      erb :"events/index"
+    end
 
 
   end

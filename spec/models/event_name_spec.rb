@@ -24,4 +24,5 @@ RSpec.describe "event_name" do
       expect(event).to_not be_valid
     end
   end
+
 end

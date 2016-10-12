@@ -1,3 +1,4 @@
+require 'time'
 require './app/models/parser'
 require 'user_agent_parser'
 
@@ -46,5 +47,10 @@ class Payload < ActiveRecord::Base
                         resolution: resolution, ip: ip)
   end
 
-  
+  def parse_time
+    Time.parse(requested_at).hour
+  end
+
+
+
 end

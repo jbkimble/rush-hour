@@ -294,5 +294,24 @@ RSpec.describe "payload" do
     end
   end
 
+  describe ".parse_time" do
+    it "can return the hour of a payload" do
+      payload = Payload.new({
+                      requested_at: "2013-02-16 21:38:28 -0700",
+                      responded_in: 40,
+                      url_id: 1,
+                      referred_by_id: 1,
+                      request_type_id: 1,
+                      event_name_id: 1,
+                      u_agent_id: 1,
+                      resolution_id: 1,
+                      ip_id: 1,
+                      client_id: 1
+                    })
+
+      expect(payload.parse_time).to eq([21])
+    end
+  end
+
 
 end

@@ -1,0 +1,6 @@
+<h1>24 Hour Breakdown</h1>
+<table>
+  <% (1..24).to_a.each do |hour| %>
+    <td><h3><%= hour %></h3><p><%= @times.count(hour) %></p></td>
+  <% end %>
+</table>
