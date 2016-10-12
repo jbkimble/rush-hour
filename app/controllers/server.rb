@@ -94,6 +94,15 @@ module RushHour
       erb :"events/index"
     end
 
+    get "/" do
+      erb :index
+    end
+
+    post "/redirect" do
+      @id = params["user"]
+      redirect "/sources/#{@id}"
+    end
+
 
   end
 end
