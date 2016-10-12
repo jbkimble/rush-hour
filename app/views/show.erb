@@ -1,27 +1,75 @@
-<h1><%= @client.identifier%></h1>
+<div class="navbar navbar-static-top navbar-default">
+  <div class="navbar-header">
+    <div class="container">
+      <a class="navbar-brand" href="/sources/<%= @client.identifier %>">Dashboard</a>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/sources/<%= @client.identifier%>/urls">Urls</a></li>
+        <li><a href="/sources/<%= @client.identifier%>/events">Events</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-<h3>Average Response time across all payloads</h3>
-<p><%= @client.payloads.average_response_time %></p>
+<div class="container">
 
-<h3>Max Response time across all payloads</h3>
-<p><%= @client.payloads.max_response_time %></p>
+<table class="table text-center">
 
-<h3>Min Response time across all payloads</h3>
-<p><%= @client.payloads.min_response_time %></p>
+  <h1><%= @client.identifier%></h1>
+    <tr>
+      <td>
+        <h3>Average Response Time</h3>
+        <p><%= @client.payloads.average_response_time.round(3) %></p>
+      </td>
+      <td>
+        <h3>Max Response Time</h3>
+        <p><%= @client.payloads.max_response_time %></p>
+      </td>
+      <td>
+        <h3>Min Response Time</h3>
+        <p><%= @client.payloads.min_response_time %></p>
+      </td>
+    </tr>
 
-<h3>Most frequent request type</h3>
-<p><%= @client.request_types.most_frequent_request_type %></p>
+    <tr>
+      <td>
+        <h3>Most Frequent Request</h3>
+        <p><%= @client.request_types.most_frequent_request_type %></p>
+      </td>
+      <td>
+        <h3>All HTTP Verbs</h3>
+        <p>
+          <%= @client.request_types.all_http_verbs.join(", ") %>
+        </p>
+      </td>
+      <td>
+        <h3>Web Browser Breakdown</h3>
+        <p>
+          <% @client.u_agents.browser_breakdown.each do |browser,count| %>
+            <%="#{browser}: #{count}" %>
+          <% end %>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h3>OS Breakdown</h3>
+        <p>
+          <% @client.u_agents.os_breakdown.each do |os,count| %>
+            <%= "#{os}: #{count}" %>
+          <% end %>
+        </p>
+      </td>
+      <td>
+        <h3>Screen Resolutions</h3>
+        <p>
+          <% @client.resolutions.resolutions_across_payloads.each do |height, width| %>
+              <%= "#{width}x#{height}" %>
+          <% end %>
+        </p>
+      </td>
+      <td>
+      </td>
+    </tr>
+  </table>
 
-<h3>List of all HTTP verbs used</h3>
-<p><%= @client.request_types.all_http_verbs %></p>
-
-
-
-<h3>Web browser breakdown across all payloads</h3>
-<p><%= @client.u_agents.browser_breakdown %></p>
-
-<h3>OS breakdown across all payloads</h3>
-<p><%= @client.u_agents.os_breakdown %></p>
-
-<h3>Screen Resolutions across all payloads (resolutionWidth x resolutionHeight)</h3>
-<p><%= @client.resolutions.resolutions_across_payloads %></p>
+</div>

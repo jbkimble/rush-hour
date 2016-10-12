@@ -1,4 +1,20 @@
-<h1>Events</h1>
-<% @events.each do |event| %>
-  <h3><a href="events/<%= event %>"> <%= event %></a></h3>
-<% end %>
+<div class="navbar navbar-static-top navbar-default">
+  <div class="navbar-header">
+    <div class="container">
+      <a class="navbar-brand" href="/sources/<%= @client.identifier %>">Dashboard</a>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/sources/<%= @client.identifier%>/urls">Urls</a></li>
+        <li><a href="/sources/<%= @client.identifier%>/events">Events</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="text-center well">
+    <h3>Events for <%=  @client.identifier.capitalize %></h3>
+    <% @events.each do |event| %>
+    <p><a href="events/<%= event %>"> <%= event %></a></p>
+    <% end %>
+  </div>
+</div>
