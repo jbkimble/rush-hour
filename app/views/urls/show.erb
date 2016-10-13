@@ -1,0 +1,57 @@
+<div class="navbar navbar-static-top navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/sources/<%= @client.identifier %>">Dashboard</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/sources/<%= @client.identifier%>/urls">Urls</a></li>
+        <li><a href="/sources/<%= @client.identifier%>/events">Events</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <table id="url_table" class="table text-center">
+    <h1><%= @client.identifier%></h1>
+    <tr>
+      <td>
+        <h3>Max Response Time</h3>
+        <p> <%= @url.max_response_time %> </p>
+      </td>
+      <td>
+        <h3>Min Response Time</h3>
+        <p> <%= @url.min_response_time %> </p>
+      </td>
+      <td>
+        <h3>All Response Times</h3>
+        <p> <%= @url.all_response_times.join(", ") %> </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <h3>Average Response Time</h3>
+        <p> <%= @url.average_response_time.round(3) %> </p>
+      </td>
+      <td>
+        <h3>HTTP Verbs</h3>
+        <p> <%= @url.list_http_verbs.join(", ") %> </p>
+      </td>
+      <td>
+        <h3>Three Most Popular User Agents</h3>
+        <p>
+           <%= @url.three_most_popular_user_agents.join(": ") %>
+       </p>
+      </td>
+    </tr>
+
+  </table>
+</div>
