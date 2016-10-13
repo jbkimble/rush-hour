@@ -1,5 +1,3 @@
-require 'pry'
-
 module RushHour
   class Server < Sinatra::Base
     not_found do
@@ -63,6 +61,7 @@ module RushHour
     get '/sources/:IDENTIFIER/urls/:RELATIVEPATH' do
       @client = Client.find_by(identifier: params["IDENTIFIER"])
       @url = @client.urls.find_by(url: @client.root_url + "/#{params["RELATIVEPATH"]}")
+
       if !@url
         @status_code = 404
         @status_message = "Relative path #{params["RELATIVEPATH"]} not found"
@@ -79,7 +78,6 @@ module RushHour
       erb :"urls/index"
     end
 
-# /sources/jumpstartlab/sources/jumpstartlab/events/socialLogin
     get '/sources/:IDENTIFIER/events/:EVENTNAME' do
       @client = Client.find_by(identifier: params["IDENTIFIER"])
       @event = @client.event_names.find_by(event_name: params["EVENTNAME"])
@@ -102,7 +100,6 @@ module RushHour
       @id = params["user"]
       redirect "/sources/#{@id}"
     end
-
 
   end
 end

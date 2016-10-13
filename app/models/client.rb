@@ -1,4 +1,3 @@
-require 'pry'
 require './app/models/parser'
 require 'user_agent_parser'
 
